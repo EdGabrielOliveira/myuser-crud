@@ -13,6 +13,13 @@ Este projeto é um desafio técnico para uma vaga, consistindo em um CRUD de usu
 
 ---
 
+## ⚠️ Pré-requisitos
+
+- [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/) instalados na máquina.
+- [Bun](https://bun.sh/) ou [Node.js](https://nodejs.org/) instalados para rodar scripts no frontend e backend.
+
+---
+
 ## 🚀 Como rodar o projeto
 
 ### Backend + Banco de Dados
