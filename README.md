@@ -46,6 +46,7 @@ Este projeto é um desafio técnico para uma vaga, consistindo em um CRUD de usu
     npx prisma migrate dev --name init
     ```
 
+- O backend e o banco de dados está rodando juntos no Dcoker.
 - O backend estará rodando na porta **3001**
 - O banco de dados estará disponível na porta **3306**
 
