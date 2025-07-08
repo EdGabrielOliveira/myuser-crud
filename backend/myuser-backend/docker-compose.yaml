@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: myuser_api
+    ports:
+      - '3001:3001'
+    environment:
+      - DATABASE_URL=mysql://root:myusersql@db:3306/myuser
+      - NODE_ENV=development
+      - PORT=3001
+      - SWAGGER_ENABLED=true
+      - SWAGGER_TITLE=myuser API
+      - SWAGGER_DESCRIPTION=API para gerenciamento de tarefas, materias, eventos e provas
+      - SWAGGER_VERSION=1.0.0
+      - SWAGGER_PATH=docs
+    volumes:
+      - ./src:/home/app/src
+      - ./prisma:/home/app/prisma
+      - /home/app/node_modules
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - myuser_network
+
+  db:
+    image: mysql:8.0
+    container_name: myusersql
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=myusersql
+      - MYSQL_DATABASE=myuser
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - myuser_network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  myuser_network:
+    driver: bridge
